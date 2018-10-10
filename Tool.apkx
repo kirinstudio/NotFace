@@ -1,0 +1,142 @@
+<?php
+
+//include(readline("kiríntudio: "));
+//link
+$link = "https://www.veeuapp.com/v1.0/incentive/tasks?access_token=".$access_token;
+$link2 = "https://www.veeuapp.com/v1.0/incentive/tasks?access_token=".$access_token;
+$link3 = "https://www.veeuapp.com/v1.0/incentive/tasks?access_token=".$access_token;
+//body
+$jbody = array(
+ 'locale' => 'in_ID',
+	'task_extra_info' => '',
+	'task_name' => 'daily_checkin_01',
+	'timezone' => 'GMT+07:00');
+$milstone = array(
+ 'latitude' => '21.94579',
+	'locale' => 'in_ID',
+	'longitude' => '105.63143',
+	'task_extra_info' => '',
+	'task_name' => 'vip_watch_video_ball_01',
+	'timezone' => 'GMT+07:00');
+$box = array(
+      'latitude' => '-6.885519',
+	     'locale' => 'in_ID',
+	     'longitude' => '107.6228',
+	     'task_extra_info' => '',
+      	'task_name' => 'treasure_box_01',
+	     'timezone' => 'GMT+07:00');
+//json_encode
+$body = json_encode($jbody,true);
+$body2 = json_encode($milstone,true);
+$body3 = json_encode($box,true);
+//header
+$header = array();
+$header[] = 	"Content-Type: application/json";              
+             "charset=UTF-8";
+             "Content-Length: 96";
+             "Host: www.veeuapp.com";
+             "Connection: Keep-Alive";
+             "Accept-Encoding: gzip";
+             "User-Agent: okhttp/3.10.0";
+
+//absen
+while (true) :
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => $link,
+    CURLOPT_TIMEOUT => 40,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => $body,
+    CURLOPT_HTTPHEADER => $header,
+    CURLOPT_SSL_VERIFYPEER => 0,
+      ));
+$resp = curl_exec($curl);                                   curl_close($curl);
+$json = json_decode($resp,true);
+if($json['code'] == '4040') {
+echo "$red.[!] $putih Điểm quảng cáo: $red".$json['message']."\n";
+sleep(0);
+break;
+}
+else
+{
+@system("clear");
+print "$turkis.[>]  $putih".$json['task']['task_type']." $turkis| Điểm Level 1: $putih".$json['task']['reward_point']."\n";
+echo "$putih   |$ijo Tên Tài Khoản: $biru".$jres['user']['nickname']."\n";
+echo "$putih  |$kuning  Email: $biru".$jres['user']['email']."\n";
+echo "$pink            Bản Quền Thuộc Về $red KirinStudio"."
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n";
+}
+sleep(0);
+endwhile;
+//milstone
+while (true) :
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => $link2,
+    CURLOPT_TIMEOUT => 40,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => $body2,
+    CURLOPT_HTTPHEADER => $header,
+    CURLOPT_SSL_VERIFYPEER => 0,
+      ));
+$result = curl_exec($curl);                                   curl_close($curl);
+$js = json_decode($result,true);
+if($js['code'] == '4040') {
+echo "$red.[!] $putih Milstone: $red".$js['message']."\n";
+sleep(0);
+break;
+}
+else
+{
+print "$turkis >  $putih".$js['task']['display_name']." $turkis       Điểm Video Level: $putih".$js['task']['reward_point']."\n";
+echo "$kuning                   Thời gian ";
+echo $now = date("i:s")."\n";
+echo "$pink                 X2 Coins: ".$js['task']['reward_point_double']."\n";
+echo "$kuning               Level hiện tại: ".$js['point']['vip_level']."\n";
+echo "$kuning             Tổng đang auto: ".$js['point']['today_revenue_point']."\n";
+echo "$kuning          Điểm hiện tại: ".$js['point']['current_point']."\n";
+echo "      $ijoTên Tài Khoản: $biru".$jres['user']['nickname']."\n";
+echo "   $kuning Email: $biru".$jres['user']['email']."\n";
+echo "$pink            Bản Quền Thuộc Về $red KirinStudio"."
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n";
+}
+sleep(0);
+	endwhile;
+//box
+while (true) :
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => $link3,
+    CURLOPT_TIMEOUT => 40,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => $body3,
+    CURLOPT_HTTPHEADER => $header,
+    CURLOPT_SSL_VERIFYPEER => 0,
+      ));
+$result_box = curl_exec($curl);                                   curl_close($curl);
+$jbox = json_decode($result_box,true);
+if($jbox['code'] == '4040')
+{
+@system("clear");
+echo "$red.[!] $putih Điểm Mỗi Ngày: $red".$jbox['message']."\n";
+echo "$putih   |$ijo   Tên Tài Khoản: $biru".$jres['user']['nickname']."\n";
+echo "$putih  |$kuning  Email: $biru".$jres['user']['email']."\n";
+echo "$pink            Bản Quền Thuộc Về $red KirinStudio"."
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n";
+break;
+}
+else
+{
+@system("clear");
+echo "$turkis.[>]  $putih".$jbox['task']['task_type']." $turkis| Điểm Level 1: $putih".$jbox['task']['reward_point']."\n";
+echo "$putih    |$ijo   Tên Tài Khoản: $biru".$jres['user']['nickname']."\n";
+echo "$putih  |$kuning  Email: $biru".$jres['user']['email']."\n";
+echo "$pink            Bản Quền Thuộc Về $red KirinStudio"."
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n";
+sleep(0);
+}
+endwhile;
+?>
