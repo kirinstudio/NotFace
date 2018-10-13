@@ -1,0 +1,7 @@
+<?php
+//masukan config token yg terdapat pada link di packet captur
+// jangan hapus tanda kutip(" ") 
+
+$access_token = "ffe9923e-1da7-443a-b1ff-893fc495f5d9";
+
+// kamu bisa membuat banyak config untuk beberapa akun.
